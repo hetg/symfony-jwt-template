@@ -1,4 +1,6 @@
 {
+    "name": "Hetg Social",
+    "description": "New social network",
     "type": "project",
     "license": "proprietary",
     "require": {
