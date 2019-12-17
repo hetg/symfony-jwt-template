@@ -1,6 +1,6 @@
 {
-    "name": "hetg/social",
-    "description": "New social network",
+    "name": "hetg/symfony-jwt-template",
+    "description": "JWT + FOS User + FOS REST template",
     "type": "project",
     "license": "proprietary",
     "require": {

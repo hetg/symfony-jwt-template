@@ -1,4 +1,4 @@
-# Hetg social
+# JWT + FOS User + FOS REST template
 
 **Instalation**
 
