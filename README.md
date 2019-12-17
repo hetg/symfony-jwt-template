@@ -9,7 +9,7 @@
     openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem -pubout
     ```
 
-2. Configure your local setting in .env
+2. Copy `.env.dist` to `.env` file. Configure your local settings in `.env` file
 
 3. Install composer packages:
     ```
