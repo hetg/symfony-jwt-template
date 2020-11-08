@@ -1,0 +1,20 @@
+jms_serializer:
+    handlers:
+        datetime:
+            default_format: 'Y-m-d\TH:i:s.uP'
+        array_collection:
+            initialize_excluded: true
+    subscribers:
+        doctrine_proxy:
+            initialize_virtual_types: true # suggested false for better performance
+            initialize_excluded: true # suggested false for better performance
+    default_context:
+        serialization:
+            serialize_null: true
+        deserialization:
+            serialize_null: true
+#    metadata:
+#        directories:
+#            FOSUserBundle:
+#                path: "%kernel.root_dir%/../config/Resources/FOSUserBundle/serializer"
+#                namespace_prefix: "FOS\\UserBundle"

@@ -1,0 +1,9 @@
+auth_controller:
+    type: rest
+    name_prefix: auth_
+    resource: 'App\Controller\AuthenticationController'
+
+user_controller:
+    type: rest
+    name_prefix: user_
+    resource: 'App\Controller\UserController'
