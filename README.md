@@ -15,8 +15,10 @@
     ```
     composer install
     ```
-4. Run migrations:
+4. Create database and run migrations:
     ```
+    bin/console doctrine:database:drop
+    bin/console doctrine:database:create
     bin/console doctrine:migrations:migrate
     ```
 5. Create admin user
