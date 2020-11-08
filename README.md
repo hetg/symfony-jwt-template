@@ -17,7 +17,6 @@
     ```
 4. Create database and run migrations:
     ```
-    bin/console doctrine:database:drop
     bin/console doctrine:database:create
     bin/console doctrine:migrations:migrate
     ```
