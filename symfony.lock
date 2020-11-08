@@ -199,7 +199,7 @@
         "version": "2.2.3"
     },
     "php": {
-        "version": "7.2"
+        "version": "7.3"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.0.0"
@@ -322,10 +322,10 @@
         ]
     },
     "symfony/http-foundation": {
-        "version": "v4.4.1"
+        "version": "v4.4.7"
     },
     "symfony/http-kernel": {
-        "version": "v4.4.1"
+        "version": "v4.4.13"
     },
     "symfony/inflector": {
         "version": "v4.4.1"
@@ -378,7 +378,7 @@
         ]
     },
     "symfony/security": {
-        "version": "v4.4.1"
+        "version": "v4.4.7"
     },
     "symfony/security-bundle": {
         "version": "4.4",
