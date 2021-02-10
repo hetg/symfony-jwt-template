@@ -26,9 +26,9 @@
         "symfony/swiftmailer-bundle": "^3.4",
         "symfony/translation"       : "4.4.*",
         "symfony/yaml"              : "4.4.*",
-        "symfony/http-kernel"       : "4.4.13",
-        "symfony/http-foundation"   : "4.4.7",
-        "symfony/security"          : "4.4.7"
+        "symfony/http-kernel"       : "4.4.*",
+        "symfony/http-foundation"   : "4.4.*",
+        "symfony/security"          : "4.4.*"
     },
     "require-dev": {
     },
