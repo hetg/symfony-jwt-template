@@ -1,0 +1,67 @@
+version: '3.7'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: 'template_mysql'
+    ports:
+      - '3307:3306'
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_DATABASE: '${DB_NAME}'
+    networks:
+      - template_internal
+  php:
+    build:
+      context: .
+      dockerfile: docker/php-fpm/Dockerfile
+      args:
+        XDEBUG_CONFIG: "remote_host=192.168.223.1 remote_enable=1"
+        PHP_IDE_CONFIG: "serverName=Docker"
+    container_name: 'template_php'
+    depends_on:
+      - mysql
+    ports:
+      - '9002:9000'
+    volumes:
+      - ./:/var/www/app:cached
+      - ${PHP_INI_OVERRIDES:-./docker/php-fpm/php-ini-overrides.ini}:/usr/local/etc/php/conf.d/99-overrides.ini
+    environment:
+      - APP_ENV
+      - APP_SECRET
+      - DB_NAME
+      - DB_HOST
+      - DB_PORT
+      - DB_USER
+      - DB_PASSWORD
+      - JWT_SECRET_KEY
+      - JWT_PUBLIC_KEY
+      - JWT_PASSPHRASE
+      - XDEBUG_CONFIG=remote_host=192.168.223.1 remote_enable=1
+      - PHP_IDE_CONFIG=serverName=Docker
+      - USER_ID
+      - GROUP_ID
+    networks:
+      - template_internal
+  nginx:
+    build: ./docker/nginx
+    container_name: 'template_nginx'
+    ports:
+      - '${DOCKER_COMPOSE_NGINX_PORT:-8000}:80'
+    volumes:
+      - ./var/log/nginx:/var/log/nginx:cached
+      - ./:/var/www/app:cached
+    networks:
+      - template_internal
+  redis:
+    image: redis:latest
+    container_name: 'template_redis'
+    networks:
+      - template_internal
+networks:
+  template_internal:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.223.0/28

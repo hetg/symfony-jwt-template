@@ -1,5 +1,21 @@
 # JWT + FOS User + FOS REST template
 
+**Docker setup**
+
+1. Copy `.env.dist` to `.env` file. Configure your local settings in `.env` file:
+    ```
+    cp .env.dist .env
+    ```
+
+2. Build containers:
+    ```
+    docker-compose build
+    ```
+
+3. Start containers:
+    ```
+    docker-compose up -d
+
 **Installation**
 
 1. Generate the SSH keys:
@@ -9,18 +25,15 @@
     openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem -pubout
     ```
 
-2. Copy `.env.dist` to `.env` file. Configure your local settings in `.env` file
-
-3. Install composer packages:
+2. Install composer packages:
     ```
     composer install
     ```
-4. Create database and run migrations:
+3. Create database and run migrations:
     ```
-    bin/console doctrine:database:create
     bin/console doctrine:migrations:migrate
     ```
-5. Create admin user
+4. Create admin user
     ```
     bin/console doctrine:fixtures:load
     ```

@@ -11,8 +11,10 @@ jms_serializer:
     default_context:
         serialization:
             serialize_null: true
+            groups: ['api']
         deserialization:
             serialize_null: true
+            groups: ['api']
 #    metadata:
 #        directories:
 #            FOSUserBundle:

@@ -26,6 +26,12 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    # Fix for Doctrine Common 3.0 to make it work with JWTRefreshTokenBundle
+    gesdinet.jwtrefreshtoken.refresh_token_manager:
+        class:  App\Doctrine\RefreshTokenManager
+        public: true
+        arguments: [ '@gesdinet.jwtrefreshtoken.object_manager', '%gesdinet.jwtrefreshtoken.refresh_token.class%' ]
+
     api_exceptions_subscriber:
         class: App\EventListener\ApiExceptionsSubscriber
         arguments: []
