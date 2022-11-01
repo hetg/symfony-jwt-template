@@ -1,6 +1,6 @@
 # JWT + FOS User + FOS REST template
 
-**Instalation**
+**Installation**
 
 1. Generate the SSH keys:
     ```
@@ -22,9 +22,5 @@
     ```
 5. Create admin user
     ```
-    bin/console fos:user:create
-    ```
-6. Promote admin user to admin role (ROLE_SUPER_ADMIN)
-    ```
-    bin/console fos:user:promote
+    bin/console doctrine:fixtures:load
     ```
