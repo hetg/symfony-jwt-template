@@ -2,6 +2,7 @@
 
 namespace App\Exception;
 
+use Exception;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
@@ -10,12 +11,9 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
  */
 class ValidationException extends BadRequestHttpException
 {
-    /**
-     * @var ConstraintViolationListInterface
-     */
-    private $_errors;
+    private ?ConstraintViolationListInterface $_errors;
 
-    public function __construct($message = null, ConstraintViolationListInterface $errors = null, \Exception $previous = null, $code = 0)
+    public function __construct($message = null, ConstraintViolationListInterface $errors = null, Exception $previous = null, $code = 0)
     {
         $this->_errors = $errors;
 

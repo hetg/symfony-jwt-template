@@ -1,9 +1,17 @@
 nelmio_api_doc:
     documentation:
         info:
-            title: App
-            #description: This is an awesome app!
-            version: 1.0.0
+            title: Symfony JWT App
+            version: 0.0.1
+        securityDefinitions:
+            Bearer:
+                type: apiKey
+                description: 'Authorization: Bearer {jwt}'
+                name: Authorization
+                in: header
+                scheme: Bearer
+        security:
+            - Bearer: []
     areas:
         path_patterns:
             - ^/api(?!/doc$)

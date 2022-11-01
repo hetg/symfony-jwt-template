@@ -2,34 +2,26 @@
 
 namespace App\ArgumentResolver;
 
-use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
-use App\Exception\ValidationException;
-use App\Mapper\RequestMapperInterface;
 use App\DTO\Interfaces\RequestDTOInterface;
 use App\DTO\Interfaces\ValidatedDTOInterface;
+use App\Exception\ValidationException;
+use App\Mapper\RequestMapperInterface;
+use Generator;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
+use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class RequestDTOResolver.
  */
 class RequestDTOResolver implements ArgumentValueResolverInterface
 {
-    /**
-     * @var ValidatorInterface
-     */
-    private $validator;
+    private ValidatorInterface $validator;
 
-    /**
-     * @var RequestMapperInterface
-     */
-    private $mapper;
+    private RequestMapperInterface $mapper;
 
-    /**
-     * @var bool
-     */
-    private $validate = false;
+    private bool $validate = false;
 
     public function __construct(ValidatorInterface $validator, RequestMapperInterface $mapper)
     {
@@ -38,12 +30,12 @@ class RequestDTOResolver implements ArgumentValueResolverInterface
     }
 
     /**
-     * @param Request          $request
+     * @param Request $request
      * @param ArgumentMetadata $argument
      *
      * @return bool
      */
-    public function supports(Request $request, ArgumentMetadata $argument)
+    public function supports(Request $request, ArgumentMetadata $argument): bool
     {
         if (null === $argument->getType() || !class_exists($argument->getType())) {
             return false;
@@ -63,12 +55,12 @@ class RequestDTOResolver implements ArgumentValueResolverInterface
     }
 
     /**
-     * @param Request          $request
+     * @param Request $request
      * @param ArgumentMetadata $argument
      *
-     * @return \Generator
+     * @return Generator
      */
-    public function resolve(Request $request, ArgumentMetadata $argument)
+    public function resolve(Request $request, ArgumentMetadata $argument): Generator
     {
         $class = $argument->getType();
 

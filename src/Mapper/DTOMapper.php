@@ -2,19 +2,16 @@
 
 namespace App\Mapper;
 
+use App\Exception\ValidationException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use App\Exception\ValidationException;
 
 /**
  * Class DTOMapper.
  */
 class DTOMapper
 {
-    /**
-     * @var ValidatorInterface
-     */
-    private $validator;
+    private ValidatorInterface $validator;
 
     public function __construct(ValidatorInterface $validator)
     {
@@ -24,15 +21,15 @@ class DTOMapper
     /**
      * Map data from public properties from object $from to object $to.
      *
-     * @param mixed      $from
-     * @param mixed      $to
-     * @param bool       $mapNullValues if false, the null values from the object $from should not be mapped
-     * @param bool       $validate      If true. Object $to will be validated after mapping
-     * @param array|null $groups        The validation groups to validate. If none is given, "Default" is assumed
+     * @param mixed $from
+     * @param mixed $to
+     * @param bool $mapNullValues if false, the null values from the object $from should not be mapped
+     * @param bool $validate If true. Object $to will be validated after mapping
+     * @param array|null $groups The validation groups to validate. If none is given, "Default" is assumed
      *
      * @return mixed
      */
-    public function map($from, $to, $mapNullValues = false, $validate = true, $groups = null)
+    public function map($from, $to, bool $mapNullValues = false, bool $validate = true, array $groups = null)
     {
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 

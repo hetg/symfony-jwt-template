@@ -25,3 +25,15 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    api_exceptions_subscriber:
+        class: App\EventListener\ApiExceptionsSubscriber
+        arguments: []
+        tags:
+            - { name: kernel.event_subscriber }
+
+    attach_user_id_on_success_listener:
+        class: App\EventListener\AttachUserIdOnSuccessListener
+        arguments: []
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: attachUserId }

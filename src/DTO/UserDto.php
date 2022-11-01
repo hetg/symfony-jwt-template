@@ -10,30 +10,25 @@ use Symfony\Component\Validator\Constraints as Assert;
 class UserDto implements RequestDTOInterface, ValidatedDTOInterface
 {
     /**
-     * @var string
-     *
      * @JMS\Type(name="string")
      * @Assert\NotBlank()
      * @Assert\Length(max="255")
      * @Assert\Email()
      */
-    public $email;
-    /**
-     * @var string
-     *
-     * @JMS\Type(name="string")
-     * @Assert\NotBlank()
-     * @Assert\Length(max="255")
-     */
-    public $username;
+    public string $email;
 
     /**
-     * @var string
-     *
      * @JMS\Type(name="string")
      * @Assert\NotBlank()
      * @Assert\Length(max="255")
      */
-    public $password;
+    public string $username;
+
+    /**
+     * @JMS\Type(name="string")
+     * @Assert\NotBlank()
+     * @Assert\Length(max="255")
+     */
+    public string $password;
 
 }

@@ -6,16 +6,14 @@ use JMS\Serializer\ArrayTransformerInterface;
 use JMS\Serializer\DeserializationContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Throwable;
 
 /**
  * Class RequestMapper.
  */
 class RequestMapper implements RequestMapperInterface
 {
-    /**
-     * @var ArrayTransformerInterface
-     */
-    private $_serializer;
+    private ArrayTransformerInterface $_serializer;
 
     /**
      * RequestMapper constructor.
@@ -38,7 +36,7 @@ class RequestMapper implements RequestMapperInterface
 
         try {
             $dto = $this->_serializer->fromArray($data, $toClass, $context);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             throw new BadRequestHttpException($e->getMessage(), $e);
         }
 
@@ -52,7 +50,7 @@ class RequestMapper implements RequestMapperInterface
      *
      * @return array
      */
-    private function _extractData(Request $request)
+    private function _extractData(Request $request): array
     {
         $method = $request->getMethod();
 

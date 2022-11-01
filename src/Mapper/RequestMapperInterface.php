@@ -13,7 +13,7 @@ interface RequestMapperInterface
      * Map all the properties from $request to $toClass. Return a new object.
      *
      * @param Request $request
-     * @param string  $toClass
+     * @param string $toClass
      *
      * @return mixed
      */
