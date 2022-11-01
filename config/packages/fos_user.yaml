@@ -5,3 +5,5 @@ fos_user:
     from_email:
         address: "test@hetg.net"
         sender_name: "test@hetg.net"
+    service:
+        mailer: 'fos_user.mailer.noop'
