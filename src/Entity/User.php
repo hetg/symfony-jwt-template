@@ -26,9 +26,29 @@ class User extends BaseUser
     /**
      * @var string
      *
+     * @JMS\SerializedName(name="uuid")
+     * @JMS\Type(name="string")
+     * @JMS\Groups({"api"})
+     *
      * @ORM\Column(name="unique_identifier", type="string", length=255, unique=true, nullable=false)
      */
     protected string $uniqueIdentifier;
+
+    /**
+     * {@inheritdoc}
+     *
+     * @JMS\Type(name="string")
+     * @JMS\Groups({"api"})
+     */
+    protected $username;
+
+    /**
+     * {@inheritdoc}
+     *
+     * @JMS\Type(name="string")
+     * @JMS\Groups({"api"})
+     */
+    protected $email;
 
     /**
      * @return string
