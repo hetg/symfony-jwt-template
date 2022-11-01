@@ -13,8 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User extends BaseUser
 {
-    const USER_IDENTIFIER_LENGTH = 20;
-
     /**
      * @var int
      *
@@ -28,26 +26,26 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="user_identifier", type="string", length=255, unique=true, nullable=false)
+     * @ORM\Column(name="unique_identifier", type="string", length=255, unique=true, nullable=false)
      */
-    protected $userIdentifier;
+    protected string $uniqueIdentifier;
 
     /**
      * @return string
      */
-    public function getUserIdentifier(): string
+    public function getUniqueIdentifier(): string
     {
-        return $this->userIdentifier;
+        return $this->uniqueIdentifier;
     }
 
     /**
-     * @param string $userIdentifier
+     * @param string $uniqueIdentifier
      *
      * @return User
      */
-    public function setUserIdentifier(string $userIdentifier): User
+    public function setUniqueIdentifier(string $uniqueIdentifier): User
     {
-        $this->userIdentifier = $userIdentifier;
+        $this->uniqueIdentifier = $uniqueIdentifier;
 
         return $this;
     }

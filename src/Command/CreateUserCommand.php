@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Util\UserManipulator;
+use App\Utils\UserManipulator;
 
 class CreateUserCommand extends \FOS\UserBundle\Command\CreateUserCommand
 {

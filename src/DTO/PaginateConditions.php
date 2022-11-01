@@ -8,22 +8,14 @@ namespace App\DTO;
  */
 class PaginateConditions
 {
-    /**
-     * @var array
-     */
-    private $order;
 
-    /**
-     * @var int
-     */
-    private $start;
+    private array $order;
 
-    /**
-     * @var int
-     */
-    private $limit;
+    private int $start;
 
-    public function __construct(array $order = [], $start, $limit)
+    private int $limit;
+
+    public function __construct(int $start, int $limit, array $order = [])
     {
         $this->order = $order;
         $this->start = $start;
@@ -33,7 +25,7 @@ class PaginateConditions
     /**
      * @return array
      */
-    public function getOrder()
+    public function getOrder(): array
     {
         return $this->order;
     }
@@ -41,7 +33,7 @@ class PaginateConditions
     /**
      * @return int
      */
-    public function getStart()
+    public function getStart(): int
     {
         return $this->start;
     }
@@ -49,7 +41,7 @@ class PaginateConditions
     /**
      * @return int
      */
-    public function getLimit()
+    public function getLimit(): int
     {
         return $this->limit;
     }

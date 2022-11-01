@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Util;
+namespace App\Utils;
 
 use App\Entity\User;
 use FOS\UserBundle\Event\UserEvent;
@@ -11,25 +11,14 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class UserManipulator extends \FOS\UserBundle\Util\UserManipulator
 {
-    /**
-     * @var EventDispatcherInterface
-     */
-    protected $dispatcher;
 
-    /**
-     * @var UserManagerInterface
-     */
-    protected $userManager;
+    protected EventDispatcherInterface $dispatcher;
 
-    /**
-     * @var RequestStack
-     */
-    protected $requestStack;
+    protected UserManagerInterface $userManager;
 
-    /**
-     * @var UuidGenerator
-     */
-    protected $uuidGenerator;
+    protected RequestStack $requestStack;
+
+    protected UuidGenerator $uuidGenerator;
 
     public function __construct(UserManagerInterface $userManager, EventDispatcherInterface $dispatcher, RequestStack $requestStack, UuidGenerator $uuidGenerator)
     {
@@ -41,18 +30,18 @@ class UserManipulator extends \FOS\UserBundle\Util\UserManipulator
         parent::__construct($userManager, $dispatcher, $requestStack);
     }
 
-    public function create($username, $password, $email, $active, $superadmin)
+    public function create($username, $password, $email, $active, $superadmin): User
     {
         /**
          * @var User $user
          */
         $user = $this->userManager->createUser();
         $user->setUsername($username);
-        $user->setUserIdentifier($this->uuidGenerator->generateUniqueIdentifier());
+        $user->setUniqueIdentifier($this->uuidGenerator->generateUniqueIdentifier());
         $user->setEmail($email);
         $user->setPlainPassword($password);
-        $user->setEnabled((bool) $active);
-        $user->setSuperAdmin((bool) $superadmin);
+        $user->setEnabled((bool)$active);
+        $user->setSuperAdmin((bool)$superadmin);
         $this->userManager->updateUser($user);
 
         $event = new UserEvent($user, $this->requestStack->getCurrentRequest());

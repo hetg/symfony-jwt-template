@@ -3,8 +3,9 @@
 namespace App\ArgumentResolver;
 
 use App\DTO\PaginateConditions;
-use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
+use Generator;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 
 /**
@@ -13,12 +14,12 @@ use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 class PaginateConditionsResolver implements ArgumentValueResolverInterface
 {
     /**
-     * @param Request          $request
+     * @param Request $request
      * @param ArgumentMetadata $argument
      *
      * @return bool
      */
-    public function supports(Request $request, ArgumentMetadata $argument)
+    public function supports(Request $request, ArgumentMetadata $argument): bool
     {
         if (null === $argument->getType()) {
             return false;
@@ -32,12 +33,12 @@ class PaginateConditionsResolver implements ArgumentValueResolverInterface
     }
 
     /**
-     * @param Request          $request
+     * @param Request $request
      * @param ArgumentMetadata $argument
      *
-     * @return \Generator
+     * @return Generator
      */
-    public function resolve(Request $request, ArgumentMetadata $argument)
+    public function resolve(Request $request, ArgumentMetadata $argument): Generator
     {
         $order = $request->get('order');
         $start = $request->get('start');
@@ -60,8 +61,6 @@ class PaginateConditionsResolver implements ArgumentValueResolverInterface
         $start = is_numeric($start) ? intval($start) : 0;
         $limit = is_numeric($limit) ? intval($limit) : 100;
 
-        $dto = new PaginateConditions($order, $start, $limit);
-
-        yield $dto;
+        yield new PaginateConditions($start, $limit, $order);
     }
 }

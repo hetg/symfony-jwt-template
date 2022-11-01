@@ -10,23 +10,17 @@ use JMS\Serializer\Annotation as JMS;
 class PaginatedResponseDto
 {
     /**
-     * @var int
-     *
      * @JMS\Type("integer")
      */
-    public $recordsTotal;
+    public int $recordsTotal;
 
     /**
-     * @var int
-     *
      * @JMS\Type("integer")
      */
-    public $recordsFiltered;
+    public int $recordsFiltered;
 
     /**
-     * @var array
-     *
      * @JMS\Type("array")
      */
-    public $data = [];
+    public array $data = [];
 }

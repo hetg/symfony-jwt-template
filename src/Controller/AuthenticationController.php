@@ -49,7 +49,7 @@ class AuthenticationController extends AbstractFOSRestController
      *     )
      * )
      *
-     * @Rest\Post("/login_check")
+     * @Rest\Post("/login")
      * @Rest\View
      */
     public function loginCheckAction()
@@ -91,7 +91,7 @@ class AuthenticationController extends AbstractFOSRestController
      * @Rest\View
      *
      * @param RefreshToken $refreshToken
-     * @param Request      $request
+     * @param Request $request
      *
      * @return mixed
      */
@@ -122,7 +122,7 @@ class AuthenticationController extends AbstractFOSRestController
      * @Rest\Post("/register")
      * @Rest\View
      *
-     * @param UserDto     $userDto
+     * @param UserDto $userDto
      * @param UserManager $userManager
      *
      * @return User
