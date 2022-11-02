@@ -90,9 +90,6 @@
     "egulias/email-validator": {
         "version": "2.1.11"
     },
-    "exsyst/swagger": {
-        "version": "v0.4.1"
-    },
     "friendsofsymfony/rest-bundle": {
         "version": "2.2",
         "recipe": {
@@ -292,12 +289,6 @@
         "version": "v4.4.1"
     },
     "symfony/http-kernel": {
-        "version": "v4.4.1"
-    },
-    "symfony/inflector": {
-        "version": "v4.4.1"
-    },
-    "symfony/intl": {
         "version": "v4.4.1"
     },
     "symfony/mailer": {

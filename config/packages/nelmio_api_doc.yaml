@@ -3,13 +3,14 @@ nelmio_api_doc:
         info:
             title: Symfony JWT App
             version: 0.0.1
-        securityDefinitions:
-            Bearer:
-                type: apiKey
-                description: 'Authorization: Bearer {jwt}'
-                name: Authorization
-                in: header
-                scheme: Bearer
+        components:
+            securitySchemes:
+                Bearer:
+                    type: apiKey
+                    description: 'Authorization: Bearer {jwt}'
+                    name: Authorization
+                    in: header
+                    scheme: Bearer
         security:
             - Bearer: []
     areas:
