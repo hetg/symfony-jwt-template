@@ -12,7 +12,7 @@ app.swagger:
     defaults: { _controller: nelmio_api_doc.controller.swagger }
 
 api:
-    type: rest
+    type: annotation
     prefix: /api
     resource: '../src/Resources/config/routing.yaml'
     name_prefix: api_

@@ -9,7 +9,7 @@ use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Gesdinet\JWTRefreshTokenBundle\Service\RefreshToken;
 use Nelmio\ApiDocBundle\Annotation as ApiDoc;
-use Swagger\Annotations as SWG;
+use OpenApi\Annotations as OA;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -21,35 +21,33 @@ class AuthenticationController extends AbstractFOSRestController
      * @ApiDoc\Operation(
      *     tags={"Authentication"},
      *     summary="Login check",
-     *     @SWG\Parameter(
-     *          name="User credentials",
-     *          in="body",
-     *          type="json",
-     *          schema = @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(property="username", type="string"),
-     *              @SWG\Property(property="password", type="string")
+     *     @OA\RequestBody(
+     *          description="User credentials",
+     *          required=true,
+     *          @OA\JsonContent(
+     *              @OA\Property(property="username", type="string"),
+     *              @OA\Property(property="password", type="string")
      *          )
      *     ),
-     *     @SWG\Response(
+     *     @OA\Response(
      *          response="200",
      *          description="OK",
-     *          schema=@SWG\Schema(
-     *              @SWG\Property(property="token", type="string",),
-     *              @SWG\Property(property="refresh_token", type="string",)
+     *          @OA\JsonContent(
+     *              @OA\Property(property="token", type="string",),
+     *              @OA\Property(property="refresh_token", type="string",)
      *          )
      *     ),
-     *     @SWG\Response(
+     *     @OA\Response(
      *          response="401",
      *          description="Unauthorized",
-     *          schema=@SWG\Schema(
-     *              @SWG\Property(property="code", type="integer",),
-     *              @SWG\Property(property="message", type="string",)
+     *          @OA\JsonContent(
+     *              @OA\Property(property="code", type="integer",),
+     *              @OA\Property(property="message", type="string",)
      *          )
      *     )
      * )
      *
-     * @Rest\Post("/login")
+     * @Rest\Post("/api/login")
      * @Rest\View
      */
     public function loginCheckAction()
@@ -60,34 +58,32 @@ class AuthenticationController extends AbstractFOSRestController
      * @ApiDoc\Operation(
      *     tags={"Authentication"},
      *     summary="Refresh token",
-     *     @SWG\Parameter(
-     *         name="Refresh token",
-     *         in="body",
-     *         type="json",
-     *         schema= @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(property="refresh_token", type="string")
+     *     @OA\RequestBody(
+     *         description="Refresh token",
+     *         required=true,
+     *         @OA\JsonContent(
+     *              @OA\Property(property="refresh_token", type="string")
      *         )
      *     ),
-     *     @SWG\Response(
+     *     @OA\Response(
      *          response="200",
      *          description="OK",
-     *          schema=@SWG\Schema(
-     *              @SWG\Property(property="token", type="string",),
-     *              @SWG\Property(property="refresh_token", type="string",)
+     *          @OA\JsonContent(
+     *              @OA\Property(property="token", type="string",),
+     *              @OA\Property(property="refresh_token", type="string",)
      *          )
      *     ),
-     *     @SWG\Response(
+     *     @OA\Response(
      *          response="401",
      *          description="Unauthorized",
-     *          schema=@SWG\Schema(
-     *              @SWG\Property(property="code", type="integer",),
-     *              @SWG\Property(property="message", type="string",)
+     *          @OA\JsonContent(
+     *              @OA\Property(property="code", type="integer",),
+     *              @OA\Property(property="message", type="string",)
      *          )
      *     )
      * )
      *
-     * @Rest\Post("/token/refresh")
+     * @Rest\Post("/api/token/refresh")
      * @Rest\View
      *
      * @param RefreshToken $refreshToken
@@ -104,22 +100,20 @@ class AuthenticationController extends AbstractFOSRestController
      * @ApiDoc\Operation(
      *     tags={"Authentication"},
      *     summary="Register",
-     *     @SWG\Parameter(
-     *          name="User data",
-     *          in="body",
+     *     @OA\RequestBody(
+     *          required=true,
      *          description="Data for creating a user",
-     *          type="json",
-     *          schema = @SWG\Schema(
+     *          @OA\JsonContent(
      *              type="object",
      *              ref= @ApiDoc\Model(type=UserDto::class)
      *          )
      *     ),
-     *     @SWG\Response(response="201", description="Created"),
-     *     @SWG\Response(response="400", description="Bad Request"),
-     *     @SWG\Response(response="401", description="Unauthorized")
+     *     @OA\Response(response="201", description="Created"),
+     *     @OA\Response(response="400", description="Bad Request"),
+     *     @OA\Response(response="401", description="Unauthorized")
      * )
      *
-     * @Rest\Post("/register")
+     * @Rest\Post("/api/register")
      * @Rest\View
      *
      * @param UserDto $userDto

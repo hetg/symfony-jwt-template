@@ -16,6 +16,3 @@ framework:
         log: true
 
     translator: ~
-
-    templating:
-        engines: ['twig', 'php']

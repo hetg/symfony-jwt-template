@@ -7,7 +7,7 @@ use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Nelmio\ApiDocBundle\Annotation as ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Swagger\Annotations as SWG;
+use OpenApi\Annotations as OA;
 
 class UserController extends AbstractFOSRestController
 {
@@ -18,16 +18,16 @@ class UserController extends AbstractFOSRestController
      * @ApiDoc\Operation(
      *     tags={"Users"},
      *     summary="Return user by UUID",
-     *     @SWG\Parameter(name="uuid", in="path", description="User UUID", required=true, type="string"),
-     *     @SWG\Response(response="200", description="If successful"),
-     *     @SWG\Response(response="400", description="Bad request"),
-     *     @SWG\Response(response="401", description="Unauthorized"),
-     *     @SWG\Response(response="403", description="Access denied")
+     *     @OA\Parameter(name="uuid", in="path", description="User UUID", required=true),
+     *     @OA\Response(response="200", description="If successful"),
+     *     @OA\Response(response="400", description="Bad request"),
+     *     @OA\Response(response="401", description="Unauthorized"),
+     *     @OA\Response(response="403", description="Access denied")
      * )
      *
      * @ParamConverter(name="user", class="App\Entity\User", options={"mapping" : {"uuid" : "uniqueIdentifier"}})
      *
-     * @Rest\Get("/users/{uuid}")
+     * @Rest\Get("/api/users/{uuid}")
      * @Rest\View()
      *
      * @return User
